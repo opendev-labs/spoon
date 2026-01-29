@@ -718,8 +718,9 @@ program
       console.log(`\n${colors.cyan}~${colors.reset}`);
       console.log(`${colors.white}spoon deploy --prod${colors.reset}`);
       console.log(`${colors.green}Success! Project is live at:${colors.reset}`);
-      console.log(`${colors.white}https://${target || 'product'}.opendev-labs.io${colors.reset}`);
+      console.log(`${colors.white}https://opendev-labs.github.io/product${colors.reset}`);
       console.log(`${colors.cyan}~${colors.reset}\n`);
+
       return;
     }
 
