@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPOON_ | Universal AI Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .mono {
+            font-family: 'JetBrains+Mono', monospace;
+        }
+
+        .pulsate-cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: #22c55e;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black text-white selection:bg-green-500 selection:text-black overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden border-b border-zinc-900">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div
+                class="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[700px] bg-green-500/5 blur-[150px] rounded-full">
+            </div>
+            <div
+                class="absolute inset-0 opacity-10 bg-[linear-gradient(rgba(0,255,65,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,65,0.1)_1px,transparent_1px)] bg-[size:40px_40px]">
+            </div>
+        </div>
+
+        <div class="relative z-10 text-center max-w-5xl px-6">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-green-500 mb-8 uppercase tracking-[0.3em] animate-pulse">
+                <i data-lucide="terminal" size="12"></i>
+                <span>Universal AI Command Center</span>
+            </div>
+
+            <h1 class="text-6xl md:text-9xl font-bold tracking-tighter mb-8 leading-[0.85] uppercase">
+                SPOON<span class="text-green-500">_</span>
+            </h1>
+            <p
+                class="text-xl md:text-2xl text-zinc-500 max-w-3xl mx-auto mb-12 font-medium leading-relaxed tracking-tight uppercase">
+                The agentic bridge between the Matrix and your local terminal.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="https://github.com/opendev-labs/spoon"
+                    class="w-full sm:w-auto h-14 px-12 rounded-full bg-white text-black text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-green-500 transition-all hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-green-500/20">
+                    Install Spoon <i data-lucide="arrow-right" size="16"></i>
+                </a>
+                <a href="https://opendev-labs.github.io/auth"
+                    class="w-full sm:w-auto h-14 px-12 rounded-full bg-black border border-zinc-800 text-white text-[11px] font-bold uppercase tracking-[0.2em] hover:border-green-500 transition-all hover:scale-105 active:scale-95 flex items-center justify-center shadow-lg">
+                    Login to Nexus
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 text-[10px] uppercase tracking-[0.4em] font-bold text-zinc-600">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-white text-lg tracking-normal">11.11.0</span>
+                <span>Latest Release</span>
+            </div>
+            <div class="w-px h-8 bg-zinc-800"></div>
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-green-500 text-lg tracking-normal">∞</span>
+                <span>Evolution Points</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section -->
+    <section class="py-40 border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            <div>
+                <h2 class="text-5xl font-bold tracking-tighter mb-8 leading-[1] uppercase">
+                    Reality is <br /><span class="text-zinc-600">Programmable.</span>
+                </h2>
+                <div class="space-y-12">
+                    <div class="flex gap-6">
+                        <div
+                            class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono text-[10px] text-green-500 shrink-0">
+                            01</div>
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-bold uppercase tracking-widest text-white">Unified Identity</h4>
+                            <p class="text-[12px] font-medium text-zinc-500 leading-relaxed uppercase tracking-wider">
+                                Sync your local progress and tokens across all systems via the OpenDev-Labs Nexus.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div
+                            class="w-12 h-12 bg-zinc-900 border border-zinc-800 flex items-center justify-center font-mono text-[10px] text-green-500 shrink-0">
+                            02</div>
+                        <div class="space-y-3">
+                            <h4 class="text-sm font-bold uppercase tracking-widest text-white">Hardline Protocol</h4>
+                            <p class="text-[12px] font-medium text-zinc-500 leading-relaxed uppercase tracking-wider">
+                                Enterprise-grade API gateway for secure communication between agents and external LLM
+                                providers.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div
+                    class="absolute inset-0 bg-green-500/10 blur-[80px] rounded-full group-hover:bg-green-500/20 transition-all duration-1000">
+                </div>
+                <div
+                    class="relative bg-zinc-950 border border-zinc-900 p-8 rounded-2xl shadow-3xl mono text-[12px] overflow-hidden">
+                    <div class="flex items-center gap-2 mb-8 border-b border-zinc-900 pb-4">
+                        <div class="w-2.5 h-2.5 rounded-full bg-red-900"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-yellow-900"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-green-900"></div>
+                        <span class="ml-4 text-zinc-700 uppercase tracking-widest">spoon-terminal</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <span class="text-zinc-700">$</span>
+                            <span class="text-white font-bold tracking-tight">spoon opendev-labs login</span>
+                        </div>
+                        <div class="text-green-500 ml-8 leading-tight">
+                            VERIFYING CREDENTIALS...<br />
+                            SYNCING CLOUD DATA...<br />
+                        </div>
+                        <div class="text-white font-bold ml-8">
+                            MATRIX: "Welcome back, The One."<br />
+                            IDENTITY: OPENDEV-LABS<br />
+                            STATUS: UNLIMITED ACCESS GRANTED
+                        </div>
+                        <div class="flex gap-4 mt-8">
+                            <span class="text-zinc-700">$</span>
+                            <span
+                                class="text-white font-bold tracking-tight border-r-2 border-green-500 pr-1 pulsate-cursor">spoon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
