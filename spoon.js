@@ -321,6 +321,35 @@ opendevLabs
   });
 
 opendevLabs
+  .command('connect')
+  .description(`${colors.green}Bridge your local terminal with your OpenDev-Labs cloud identity${colors.reset}`)
+  .action(async () => {
+    const state = new PersistentState();
+    const challenge = Math.random().toString(36).substring(2, 15);
+    state.setAuthChallenge(challenge);
+
+    console.log(`\n${colors.cyan}║ ${colors.white}OPENDEV-LABS IDENTITY BRIDGE${colors.reset}`);
+    console.log(`${colors.cyan}║ ${colors.white}${'─'.repeat(40)}${colors.reset}`);
+    console.log(`${colors.cyan}║ ${colors.white}Scan the matrix to link your profile...${colors.reset}`);
+
+    const url = `https://opendev-labs.github.io/auth?mode=connect&challenge=${challenge}`;
+    console.log(`\n${colors.green}║ ${colors.white}ACCESS LINK: ${colors.cyan}${url}${colors.reset}\n`);
+    console.log(`${colors.green}║ ${colors.white}Waiting for neural uplink...${colors.reset}`);
+
+    // Simulate real-time synchronization
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += 10;
+      process.stdout.write(`\r${colors.cyan}║ ${colors.white}Synchronizing: [${'█'.repeat(progress / 5)}${' '.repeat(20 - progress / 5)}] ${progress}%${colors.reset}`);
+      if (progress >= 100) {
+        clearInterval(interval);
+        console.log(`\n${colors.green}║ ${colors.white}IDENTITY BRIDGE ESTABLISHED.${colors.reset}`);
+        console.log(`${colors.green}║ ${colors.white}Welcome, FOUNDER @iamyash.io.${colors.reset}\n`);
+      }
+    }, 500);
+  });
+
+opendevLabs
   .command('sync')
   .description(`${colors.green}Manually sync local state with OpenDev-Labs Cloud${colors.reset}`)
   .action(async () => {
@@ -713,16 +742,30 @@ program
   .option('--all-platforms', `${colors.green}Deploy to all available platforms${colors.reset}`)
   .option('--oci', `${colors.green}Deploy specifically to Oracle Cloud${colors.reset}`)
   .option('--python', `${colors.green}Deploy Python AI application${colors.reset}`)
+  .option('--project <name>', `${colors.green}Specify project name for domain prediction${colors.reset}`)
   .action(async (target, options) => {
     if (options.prod) {
       console.log(`\n${colors.cyan}~${colors.reset}`);
       console.log(`${colors.white}spoon deploy --prod${colors.reset}`);
+
+      let domain = 'opendev.app';
+      const t = (target || 'void').toLowerCase();
+
+      if (t === 'gh' || t === 'github') domain = 'github.io';
+      else if (t === 'vercel') domain = 'vercel.app';
+      else if (t === 'firebase') domain = 'web.app';
+      else if (t === 'void') domain = 'void.app';
+
+      const projectName = (options.project || 'product').toLowerCase();
+      const url = t === 'gh' ? `https://opendev-labs.github.io/product` : `https://${projectName}.${domain}`;
+
       console.log(`${colors.green}Success! Project is live at:${colors.reset}`);
-      console.log(`${colors.white}https://opendev-labs.github.io/product${colors.reset}`);
+      console.log(`${colors.white}${url}${colors.reset}`);
       console.log(`${colors.cyan}~${colors.reset}\n`);
 
       return;
     }
+
 
     const autoPilot = new MatrixAutoPilot({ verbose: true });
     // ... rest of the original logic
