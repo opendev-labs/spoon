@@ -1,0 +1,14 @@
+{
+  "name": "product-engine",
+  "version": "1.0.0",
+  "description": "A high-fidelity project powered by Spoon Omega",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "deploy": "spoon deploy --prod"
+  },
+  "dependencies": {
+    "lamadb": "latest",
+    "syncstack": "latest"
+  }
+}
