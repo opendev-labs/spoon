@@ -1,0 +1,44 @@
+{
+  "name": "@opendev-labs/spoon",
+  "version": "11.11.0",
+  "description": "Universal CLI Operator System",
+  "main": "spoon.js",
+  "bin": {
+    "spoon": "spoon.js"
+  },
+  "scripts": {
+    "start": "node spoon.js",
+    "test": "node tests/unit/basic.test.js",
+    "dev": "node spoon.js tank --verbose",
+    "install-global": "npm link",
+    "build": "echo 'SPOON CLI requires no build process'"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "body-parser": "^2.2.2",
+    "commander": "^9.4.1",
+    "express": "^5.2.1"
+  },
+  "keywords": [
+    "cli",
+    "automation",
+    "devops",
+    "matrix",
+    "universal"
+  ],
+  "author": "OpenDev-Labs",
+  "license": "MIT",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib",
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opendev-labs/spoon.git"
+  },
+  "bugs": {
+    "url": "https://github.com/opendev-labs/spoon/issues"
+  },
+  "homepage": "https://github.com/opendev-labs/spoon#readme"
+}
