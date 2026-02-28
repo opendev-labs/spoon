@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 
+// Load environment variables FIRST
+require('dotenv').config();
+
 const { Command } = require('commander');
 const colors = require('./lib/colors');
 const ascii = require('./lib/ascii');
@@ -9,7 +12,9 @@ const TankOperator = require('./lib/TankOperator');
 const AgentAnalysis = require('./lib/AgentAnalysis');
 const PhoneBooth = require('./lib/PhoneBooth');
 const Healer = require('./lib/Healer');
-const https = require('https');
+const ForgeAgent = require('./lib/ForgeAgent');
+const ConstructUI = require('./lib/ConstructUI');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 const readline = require('readline');
 const { extractProjectName } = require('./lib/helpers');
 const { execSync } = require('child_process');
@@ -229,6 +234,18 @@ program
     console.log(`╚══════════════════════════════════════════════════╝\n`);
   });
 
+// FORGE Command
+program
+  .command('forge')
+  .description(`${colors.cyan}Initiate the Sovereign Forge for MoltOS generation${colors.reset}`)
+  .option('--themed', 'Sync host aesthetics (Adwaita/Tela-red) into the ISO')
+  .option('--test', 'Automatically launch QEMU test upon success')
+  .action(async (options) => {
+    const state = new PersistentState();
+    const forgeAgent = new ForgeAgent(state);
+    await forgeAgent.forge(options);
+  });
+
 // INIT Command
 program
   .command('init')
@@ -315,8 +332,37 @@ program
   .description(`${colors.green}Self-repair system integrity and clear cache${colors.reset}`)
   .option('--nuclear', 'Full system reset and memory wipe')
   .action(async (options) => {
-    const healer = new Healer();
+    const autoPilot = new MatrixAutoPilot();
+    const healer = new Healer(autoPilot);
     await healer.heal(options);
+  });
+
+// DWELL Command
+program
+  .command('dwell')
+  .alias('live')
+  .description(`${colors.green}Activate autonomous heartbeat and file system watching${colors.reset}`)
+  .argument('[path]', 'Path to watch', '.')
+  .action(async (path) => {
+    const autoPilot = new MatrixAutoPilot();
+    const healer = new Healer(autoPilot);
+    await healer.dwell(path);
+  });
+
+// CONSTRUCT Command
+program
+  .command('construct')
+  .description(`${colors.green}Enter the visual HUD of the Matrix${colors.reset}`)
+  .option('-p, --port <number>', 'Port for the Construct HUD', 4444)
+  .action((options) => {
+    const construct = new ConstructUI(parseInt(options.port));
+    construct.start();
+
+    // Handle graceful shutdown
+    process.on('SIGINT', () => {
+      construct.stop();
+      process.exit();
+    });
   });
 
 // OpenDev-Labs Unified Login
@@ -1169,7 +1215,7 @@ program
     console.log(`  ${colors.cyan}System Control:${colors.reset} ${(stats.systemControl * 100).toFixed(1)}%`);
     console.log(`  ${colors.cyan}Reality Manipulation:${colors.reset} ${stats.realityManipulationLevel.toUpperCase()}`);
     console.log(`  ${colors.cyan}CLI Tools:${colors.reset} ${operator.cliRegistry.size} registered`);
-    console.log(`  ${colors.cyan}Projects:${colors.reset} ${stats.projects.length} managed`);
+    console.log(`  ${colors.cyan}Projects:${colors.reset} ${stats.projects || 0} managed`);
     console.log(`  ${colors.cyan}Total Commands:${colors.reset} ${stats.totalCommands}`);
     console.log(`  ${colors.cyan}Oracle Insights:${colors.reset} ${stats.oracleInsights}`);
     console.log(`  ${colors.cyan}OCI Deployments:${colors.reset} ${stats.ociDeployments}`);
